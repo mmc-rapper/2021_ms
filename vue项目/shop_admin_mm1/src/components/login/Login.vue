@@ -14,9 +14,7 @@
       </el-form-item>
     </el-form>
   </el-col>
-
 </el-row>
-
 </template>
 
 <script>
@@ -64,6 +62,9 @@ export default {
               type: 'success',
               duration: 800
             });
+            // 保存token到本地
+            localStorage.setItem('token',res.data.data.token)
+
             //2. 跳转到home页面  =>  编程式导航
             this.$router.push('/home')
           }else {
@@ -94,21 +95,15 @@ export default {
 }
 </script>
 
-<style>
-* {
-  margin: 0;
-}
-html,body,#app {
-  height: 100%;
-}
+<style lang="less" scoped>
 .el-row {
   height: 100%;
   background-color: #2d434c;
+  .el-col {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+  }
 }
 
-.el-col {
-  background-color: #fff;
-  padding: 25px 30px;
-  border-radius: 10px;
-}
 </style>

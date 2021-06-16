@@ -7,8 +7,25 @@ import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+// 引入公共css
+import './css/index.css'
+
 // 引入路由
 import router from './router'
+
+// 导航守卫
+router.beforeEach((to, from, next) => {
+  // console.log(from.path, to.path)
+  // 判断访问的是不是登录页
+  if (to.path === '/login') {
+    next()
+  } else {
+    // 其他页面
+    // 判断有没有登录过  登录过会有token值，否则就跳转到login
+    let token = localStorage.getItem('token')
+    token ? next() : next('/login')
+  }
+})
 
 Vue.use(ElementUI)
 
