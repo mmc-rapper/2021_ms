@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      具体的四步骤：
+      1. 入口：url地址栏自己手写
+      2. 规则：一个哈希 == 一个组件
+      3. 组件
+      4. 出口
+     -->
+
+    <!-- 4. 出口 组件要展示的地方-->
+    <router-view></router-view>
+  </div>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+  <script>
+    // 3. 注册组件
+    const One = Vue.component('one', {
+      template: `
+        <div>子组件：</div>
+      `
+    })
+
+    // 实例化路由
+    const router = new VueRouter({
+      // 2. 路由匹配规则 就是一个哈希值 对应的一个组件
+      // path:路由路径
+      // component：将来要展示的路由组件
+      routes: [{
+        path: '/one',
+        component: One
+      }]
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      router,
+    })
+  </script>
+</body>
+
+</html>

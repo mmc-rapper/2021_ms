@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 第二步：通过自定义事件，父组件将方法传递给子组件  例如@fn -->
+    <child @fn="pfn"></child>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    // 子组件
+    Vue.component('child', {
+      template: `
+      <div>子组件：</div>
+      `,
+      data() {
+        return {
+          cmsg: '子组件里的数据'
+        }
+      },
+      created() {
+        // 第三步：子组件调用这个方法 
+        // 第一个参数：表示要触发的自定义事件名称，也就是 @fn
+        // 第二个参数：表示要传递给父组件的数据
+        this.$emit('fn', this.cmsg)
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      // 第一步：父组件准备一个方法(事件/函数)
+      methods: {
+        pfn(arg) {
+          console.log('父组件中接收到子组件传递过来的数据：', arg);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./node_modules/axios/dist/axios.js"></script>
+  <script>
+    //  1. 使用 axios 请求get
+    // axios.get('http://localhost:3000/todos/').then(res => {
+    //   console.log(res);
+    // })
+
+    // 2. 获取具体的对象
+    // axios.get('http://localhost:3000/todos/1').then(res => {
+    //   console.log(res);
+    // })
+
+    // 2.1 获取具体的对象
+    // axios.get('http://localhost:3000/todos/', {
+    //   params: {
+    //     id: 1
+    //   }
+    // }).then(res => {
+    //   console.log(res);
+    // })
+
+    // 3. 演示post添加对象
+    // axios.post('http://localhost:3000/todos/', {
+    //   name: '大飞机',
+    //   age: 23
+    // }).then(res => {
+    //   console.log(res);
+    // })
+
+    // 4. 演示delete删除对象
+    // axios.delete('http://localhost:3000/todos/1').then(res => {
+    //   console.log(res);
+    // })
+
+    // 5. 演示put和patch
+    // axios.put('http://localhost:3000/todos/5', {
+    //   name: '打飞机',
+    //   age: 88
+    // }).then(res => {
+    //   console.log(res);
+    // })
+
+    axios.patch('http://localhost:3000/todos/4', {
+      name: '敲代码'
+    }).then((res) => {
+      console.log(res);
+    })
+  </script>
+</body>
+
+</html>

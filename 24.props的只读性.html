@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <child :msg="msg" :obj="obj"></child>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    Vue.component('child', {
+      template: `
+        <div>
+          子组件：{{msg}}  |  {{obj.name}}
+          <button @click="sss">修改父组件</button>
+          </div>
+      `,
+      props: ['msg', 'obj'],
+      methods: {
+        sss() {
+          // 修改成功但是会报错
+          // this.msg = '哈哈哈哈'
+          this.obj.name = '马哥'
+        }
+      }
+
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '嘻嘻嘻',
+        obj: {
+          name: '张三'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

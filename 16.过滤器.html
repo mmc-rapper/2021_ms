@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{date | dateFilter}}</h1>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    // 注意点1：
+    // 1. 在实例vue之前注册
+    // 2. 过滤器的回调有一个返回值，返回的值就是处理好的数据
+    // 3. 回调函数接收一个参数(要处理的值)
+
+    // 使用：
+    // 使用管道  "|"  格式： 要处理的值 | 过滤器名
+
+    // 注册全局过滤器
+    // 参数1：过滤器的名字
+    // 参数2：回调，谁使用过滤器，就会执行这个回调
+    Vue.filter('dateFilter', (res) => {
+      console.log(res);
+      return `${res.getFullYear()}-${res.getMonth()}-${res.getDate()}`
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        date: new Date()
+      }
+    })
+  </script>
+</body>
+
+</html>

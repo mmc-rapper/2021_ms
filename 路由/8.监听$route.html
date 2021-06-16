@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="obj.name">
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        num: '',
+        obj: {
+          name: 'zs'
+        }
+      },
+      watch: {
+        // 监听简单类型 (num)
+        // num(newVal) {
+        //   console.log(newVal);
+        // }
+
+        // 监听复杂类型  obj 
+        // 因为监听的是 对象的地址，name变化了只是地址指向的空间内容发生了变化而已,所以监听不到
+        // 地址没有变，只是内容发生了变化
+        // obj(newVal) {
+        //   console.log(newVal);
+        // }
+
+        // 需要深度监听
+        obj: {
+          deep: true,
+          handler(newVal) {
+            console.log(newVal.name);
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

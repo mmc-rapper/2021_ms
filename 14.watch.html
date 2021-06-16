@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>监听小案例</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 案例：监听文本框的字符个数，如果在3-6之间，正常显示，如果不在这个范围，
+      提示：格式不正确
+    -->
+    <input type="text" v-model="msg"> <span v-show="isShow">格式不正确</span>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '',
+        isShow: false
+      },
+      watch: {
+        msg(newVal, oldVal) {
+          // console.log('新值：' + newVal, '旧值：' + oldVal);
+          if (newVal.length >= 3 && newVal.length <= 6) {
+            console.log('格式正确');
+            this.isShow = false
+          } else {
+            console.log('格式不正确');
+            this.isShow = true
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

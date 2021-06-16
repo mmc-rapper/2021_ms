@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.数组的去重</title>
+  <style>
+    body {
+      position: absolute;
+      transform: scale();
+    }
+  </style>
+</head>
+
+<body>
+  <p>数组的去重</p>
+  <p>当前的数组: [3, 1, 2, 3, 4, 2, 9, 5, 2, 4, 6, 9]</p>
+</body>
+
+<script>
+  var arr = [3, 1, 2, 3, 4, 2, 9, 5, 2, 4, 6, 9]
+  console.log(arr);
+  // 方法1. Array.filter() + indexOf
+  // 思路：通过filter()遍历数组，然后利用indexOf()  返回 indexOf(item) === index
+  let res = arr.filter((item, index) => {
+    // 在当前元素中，原始数组中的第一个索引==当前索引值，那么就返回当前元素
+    return arr.indexOf(item) === index
+  })
+  console.log(res);
+
+  // 方法2. 双重for循环   效率最低
+  // function dbFor() {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     for (let j = i + 1; j < arr.length; j++) {
+  //       // 判断第二个元素 是否相等于第一个元素，如果相等就用splice删掉第二个
+  //       if (arr[i] == arr[j]) {
+  //         arr.splice(j, 1)
+  //         // splice 会改变数组长度，所以要将 下标 j 减一
+  //         j--
+  //       }
+  //     }
+  //   }
+  //   return arr
+  // }
+  // console.log(dbFor());
+
+  // 方法3. for...of + includes()  => 双重循环的升级版  类似filter + indexOf()
+  // 创建一个空数组，如果不有相同的 => 然后push进去
+  // function sj(arr) {
+  //   var res = []
+  //   for (var item of arr) {
+  //     if (!res.includes(item)) {
+  //       // 我们想要的是不相同键值，不同的键值会返回false ,让他成立加个 !
+  //       res.push(item)
+  //     }
+  //   }
+  //   return res
+  // }
+  // console.log(sj(arr));
+
+  // 方法4. Array.sort()  => 先排序，然后和相邻的元素进行对比，如果一样就排除掉
+  // function sortF(arr) {
+  //   arr.sort()
+  //   // 排序好后将第一个元素给到res数组，然后循环的时候 i 的下标从1开始，然后拿 下标1的元素和 0坐标元素做对比
+  //   // 如果不一样的话就添加到res数组
+  //   let res = [arr[0]]
+  //   for (let i = 1; i < arr.length; i++) {
+  //     if (arr[i] !== arr[i - 1]) {
+  //       res.push(arr[i])
+  //     }
+  //   }
+  //   return res
+  // }
+  // console.log(sortF(arr));
+
+  // 方法5. new Set()  => es6新增的 Set 这个数据结构，类似于数组，但是Set的成员具有唯一性
+  // 简写：[...new Set(arr)] 
+  // function setF(arr) {
+  //   return Array.from(new Set(arr))
+  // }
+  // console.log(setF(arr));
+
+  // 方法6. for...of + Object   => 有问题
+  // 首先创建一个空对象，然后用 for 循环遍历
+  // 利用对象的属性不会重复这一特性，校验数组元素是否重复
+  // function distinct(arr) {
+  //   let result = []
+  //   let obj = {}
+
+  //   for (let i of arr) {
+  //     if (!obj[i]) {
+  //       result.push(i)
+  //       obj[i] = 1
+  //     }
+  //   }
+
+  //   return result
+  // }
+
+  // console.log(distinct(arr));
+</script>
+
+</html>

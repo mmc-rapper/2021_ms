@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{msg}}</h1>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '测试信息'
+      },
+      methods: {
+        fn() {
+
+        }
+      },
+      // 数据响应之前调用
+      // 特点：无法获取data里数据和methods里的事件
+      // 场景：场景不多
+      beforeCreate() {
+        console.warn('beforeCreate', this.msg, this.fn);
+      },
+
+      // 数据响应之后调用
+      // 特点：可以获取data里数据和methods里的事件
+      // 场景：1.发送ajax  2.操作data里数据  3.获取本地数据(操作数据)
+      created() {
+        console.warn('created', this.msg, this.fn);
+      }
+    })
+  </script>
+</body>
+
+</html>

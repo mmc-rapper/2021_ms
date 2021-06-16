@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{date | dateFilter('YYYY-MM-DD hh:mm:ss')}}</h1>
+    <!-- 想要不同格式的日期格式 -->
+    <h1>{{date | dateFilter('YYYY-MM-DD')}}</h1>
+
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./Todos/todomvc-app-template/node_modules/moment/moment.js"></script>
+  <script>
+    // 注册过滤器
+    Vue.filter('dateFilter', (res, str) => {
+      return moment(res).format(str)
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        date: new Date()
+      },
+    })
+  </script>
+</body>
+
+</html>

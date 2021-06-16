@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .router-link-exact-active,
+    .router-link-active {
+      color: red;
+      font-size: 20px;
+    }
+
+    .xixi {
+      color: purple;
+      font-size: 26px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/detail/1" exact>手机1</router-link>
+    <router-link to="/detail/2" exact>手机2</router-link>
+    <router-link to="/detail/3" exact>手机3</router-link>
+    <router-view></router-view>
+
+  </div>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+  <script>
+    const Detail = {
+      template: `<h1>手机详情页：{{$route.params.is}}</h1>`
+    }
+    // 实例路由
+    const router = new VueRouter({
+      routes: [{
+        path: '/detail/:is',
+        component: Detail
+      }],
+      linkActiveClass: 'xixi'
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      router
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <input type="text" id="txt">
+  </div>
+  <!-- <script src="./vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '这是一条测试'
+      }
+    })
+  </script> -->
+
+  <script>
+    const txt = document.getElementById('txt')
+    txt.oninput = function () {
+      console.log(this.value);
+      obj.name = this.value
+    }
+    let obj = {}
+    let temp
+    Object.defineProperty(obj, 'name', {
+      set(newVal) {
+        console.log('调用了set', newVal);
+        temp = newVal
+        txt.value = newVal
+      },
+      get() {
+        console.log('调用了get');
+        return temp
+      }
+    })
+  </script>
+</body>
+
+</html>

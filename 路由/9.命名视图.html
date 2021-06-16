@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .head {
+      height: 100px;
+      background-color: skyblue;
+    }
+
+    .main {
+      display: flex;
+      height: 400px;
+    }
+
+    .left {
+      flex: 4;
+      background-color: pink;
+    }
+
+    .content {
+      flex: 8;
+      background-color: lime;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 出口 -->
+    <router-view class="head" name="head"></router-view>
+    <div class="main">
+      <router-view class="left" name="left"></router-view>
+      <router-view class="content" name="content"></router-view>
+    </div>
+  </div>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+  <script>
+    const Head = {
+      template: `
+        <h1>head</h1>
+      `
+    }
+    const Left = {
+      template: `
+        <h1>left</h1>
+      `
+    }
+    const Content = {
+      template: `
+        <h1>content</h1>
+      `
+    }
+
+    const router = new VueRouter({
+      routes: [
+        // 重定向
+        {
+          path: '/',
+          redirect: '/home'
+        },
+        {
+          path: '/home',
+          components: {
+            head: Head,
+            left: Left,
+            content: Content,
+          }
+        },
+        // {
+        //   path: '/',
+        //   component: Left
+        // },
+        // {
+        //   path: '/',
+        //   component: Content
+        // }
+      ]
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      router
+    })
+  </script>
+</body>
+
+</html>

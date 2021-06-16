@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <child></child>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    // 注册过滤器
+    Vue.filter('过滤器名字', '回调')
+
+    // 第一步 注册一个全局组件
+    // 参数1：组件的名称
+    // 参数2：配置项，对象格式
+    // 第二步：使用：当成一个标签使用
+    Vue.component('child', {
+      template: `
+      <div>
+          <h1>嘻嘻</h1>
+          <h1>哈哈</h1>
+        </div>
+      `,
+      data() {
+
+      },
+      methods: {}
+    })
+
+    /*
+      注意点：
+      1. 注册组件一定要在vm实例前
+      2. component是一个单数
+      3. 模板只能有一个根节点
+      4. 组件的配置项和 vue 实例 的配置项一样 
+      (如：data、methods、filters、watch、computed、钩子函数等)
+      5. 组件里的data是一个方法，不是一个对象，返回的是一个对象
+    */
+
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

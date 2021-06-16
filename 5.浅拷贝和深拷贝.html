@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5.浅拷贝和深拷贝</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // 浅拷贝
+  var obj = {
+    name: 'cmm',
+    sb: {
+      name: 'zcy',
+    }
+  }
+  // var newObj = Object.assign({}, obj)
+  var newObj = {
+    ...obj
+  }
+  // obj.sb.name = 'cnm'
+  console.log(obj);
+  console.log(newObj);
+
+  // 深拷贝
+</script>
+
+</html>

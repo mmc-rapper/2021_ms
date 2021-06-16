@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.闭包</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // function f1() {
+  //   var a = 999
+
+  //   function f2() {
+  //     alert(a)
+  //   }
+  //   return f2
+  // }
+  // var res = f1()
+  // res()
+
+  // var name = "The Window";
+
+  // var object = {
+  //   name: "My Object",
+
+  //   getNameFunc: function () {
+  //     var that = this;
+  //     return function () {
+  //       return that.name;
+  //     };
+
+  //   }
+
+  // };
+
+  // alert(object.getNameFunc()());
+
+  // ##2. 闭包作为参数传递：
+  // var num = 15;
+  // var fn1 = function (x) {
+  //   if (x > num) {
+  //     console.log(x)
+  //   }
+  // }
+
+  // void
+
+  // function (fn2) {
+  //   var num = 100
+  //   fn2(30)
+  // }(fn1)
+
+  // 定时器闭包
+  for (var i = 0; i < 5; i++) {
+    setTimeout(() => {
+      console.log(i + '');
+    }, 100);
+  }
+  for (var i = 0; i < 5; i++) {
+    (function (i) {
+      setTimeout(() => {
+        console.log(i + '');
+      }, i * 100);
+    }(i))
+  }
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>我是li1</li>
+    <li>我是li2</li>
+    <li>我是li3</li>
+    <li>我是li4</li>
+    <li>我是li5</li>
+    <li>我是li6</li>
+    <li>我是li7</li>
+    <li>我是li8</li>
+  </ul>
+
+  <!-- 第一阶段：隔行变色案例 -->
+  <!-- 下载安装jquery，引入jq -->
+  <!-- 正常引用 -->
+  <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
+  <!-- <script src="./main.js"></script> -->
+
+  <!-- 打包后需要用处理过的main.js -->
+  <!-- <script src="../dist/main.js"></script> -->
+
+  <!-- 第二阶段 打包方式-->
+  <!-- 方式1：命令行 -->
+  <!-- webpack ./src/main.js --mode production -->
+  <!-- 打包工具    入口文件       环境   没有指定出口路径的话默认放在dist里-->
+
+  <!-- 完整版 -->
+  <!-- webpack ./src/main.js  --output  ./dist/bundel.js  --mode production -->
+  <!-- 打包工具     入口文件        出口  出口路径      环境 -->
+
+  <!-- 引入bundle -->
+  <!-- <script src="../dist/bundle.js"></script> -->
+  <script type="text/javascript" src="bundle.js"></script>
+</body>
+
+</html>

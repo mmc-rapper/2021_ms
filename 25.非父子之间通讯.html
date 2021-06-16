@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <jack></jack>
+    <rose></rose>
+  </div>
+  <script src="./vue.js"></script>
+
+  <script>
+    // 第一步：实例化事件总线(event bus) 事件总线其实就是一个空的vue实例
+    const bus = new Vue()
+
+    Vue.component('jack', {
+      template: `
+    <div @click="send">
+      子组件jack：  
+    </div>
+	`,
+      methods: {
+        send() {
+          // console.log('1');
+          // 第二步：发送数据 => 触发事件
+          bus.$emit('send', '想草你')
+        }
+      },
+    })
+
+    Vue.component('rose', {
+      template: `
+    <div>
+      子组件rose：  
+    </div>
+	`,
+      created() {
+        // 第三步：接收数据 => 注册事件
+        bus.$on('send', res => {
+          console.log(res);
+        })
+      },
+      methods: {},
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.函数节流和函数防抖</title>
+</head>
+
+<body>
+  <button id='panel' style="background:red;width:200px;height:200px">
+
+  </button>
+</body>
+<script>
+  // 在有些情况我们也许会碰到如下场景,监听一个input框的输入事件,
+  // 但是大多数情况下,我们不是为了监听用户输了什么,而是想知道用户输到什么时候结束了,
+  // 所以如果实时监听键盘事件,在每次用户敲击键盘的时候去触发一个函数,
+  // 这样就多了非常多无用的操作,比如window.resize事件
+
+  // function fun() {
+  //   console.info('onresize');
+  // }
+  // // 输出结果可以看出，只要窗口发生变化就会打印，实际上是没有意义的
+  // function throttle(method, context) {
+  //   clearTimeout(method.timer)
+  //   method.timer = setTimeout(() => {
+  //     method.call(this)
+  //   }, 500);
+  // }
+
+  // //在你的控制台输入以下代码
+  // window.onresize = () => throttle(fun, window)
+
+  // 函数节流  => 在让函数在规定的时间内只执行一次
+  let btn = document.querySelector('button')
+  let the = throttle(function () {
+    console.log(this);
+  }, 3000)
+  btn.onclick = the
+
+  function throttle(fun, time) {
+    // 定时器
+    let timeout
+    // 获取当前时间
+    let startTime = new Date()
+    // 返回方法调用
+    return function () {
+      // 获取当前时间
+      let curTime = new Date()
+      // 总是干掉事件回调
+      clearTimeout(timeout)
+      // 判断时间 是否到了
+      if (curTime - startTime >= time) {
+        //时间到了之后调用方法并且传入this
+        fun.call(this)
+        //更新时间开始
+        startTime = new Date()
+      } else {
+        // 没有达到时间的开启一个定时器
+        timeout = setTimeout(() => {
+          //定时器时间到了之后调用方法
+          fun.call(this)
+          //更新时间
+          startTime = new Date()
+        }, time - (curTime - startTime));
+      }
+    }
+  }
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      display: none
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <h1 v-if="age < 30">哥哥</h1>
+    <h1 v-else-if="age >= 30 && age < 50">爸爸</h1>
+    <h1 v-else>爷爷</h1>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        age: 30
+      }
+    })
+  </script>
+</body>
+
+</html>
