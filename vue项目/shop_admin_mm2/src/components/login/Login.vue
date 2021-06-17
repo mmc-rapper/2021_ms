@@ -56,6 +56,10 @@ export default {
             type: 'success',
             duration: 800
           });
+          console.log(res);
+          // 将获取到的token保存到localStorage中
+          // 后续需要做导航守卫，每次操作都要提供token
+          localStorage.setItem('token',res.data.data.token)
           // 成功后跳转到home
           this.$router.push('/home')
         }else {
@@ -79,21 +83,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .el-row{
     height: 100%;
     background-color: #2d434c;
+     .el-col{
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 15px;
+       .el-form-item {
+        margin-bottom: 22px;
+      }
+    }
   }
 
-  .el-col{
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 15px;
-  }
-  .el-form-item {
-    margin-bottom: 22px;
-  }
-  .el-form-item__label {
-    padding: 0 0 10px;
-  }
 </style>

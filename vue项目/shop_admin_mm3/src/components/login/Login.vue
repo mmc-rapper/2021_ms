@@ -50,6 +50,8 @@ export default {
         // 发送请求
         axios.post('http://localhost:8888/api/private/v1/login',this.ruleForm).then(res=> {
           console.log(res);
+          // 将token保存到后台，因为之后的操作一直需要携带着token
+          localStorage.setItem('token',res.data.data.token)
           // 通过返回的状态码来设置消息提示
           if (res.data.meta.status === 200) {
             this.$message({
@@ -85,23 +87,17 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-#app {
-
-}
+<style lang="less" scoped>
 .el-row {
   height: 100%;
   background-color: #2d434c;
+  .el-col {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    .el-form-item {
+      margin-bottom: 22px;
+    }
+  }
 }
-.el-col {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 15px;
-}
-
-.el-form-item {
-  margin-bottom: 22px;
-}
-
-
 </style>
